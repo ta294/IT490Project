@@ -1,0 +1,2 @@
+create table api ( event_date varchar(255), event_time varchar(255), event_home_team varchar(255), event_away_team varchar(255), event_final_result varchar(255), event_status varchar(255), country_name varchar(255), league_name varchar(255) );
+
