@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SOCCER BETTING</title>
+    <meta name="viewport" content="width=device-width">
+</head>
+<body>
+    <h1>SOCCER BETTING</h1>
+    <p id="output"></p>
+    <script>
+        
+        if( 'Notification' in window){
+            
+            if (Notification.permission === 'granted') {
+                doNotify();
+            }else{
+                
+                Notification.requestPermission()
+                    .then(function(result) {
+                        console.log(result);  //granted || denied
+                        if( Notification.permission == 'granted'){ 
+                            doNotify();
+                        }
+                    })
+                
+                    .catch( (err) => {
+                        console.log(err);
+                    });
+            }
+        
+        }
+        
+        function doNotify(){
+            let title = "The Title";
+            let t = Date.now() + 120000;
+            let options = {
+                body: 'Arsenal WON!!',
+                data: {prop1:123, prop2:"Steve"},
+                //lang: 'en-CA',
+                //icon: './img/calendar-lg.png',
+                timestamp: t,
+                //vibrate: [100, 200, 100]
+            }
+            let n = new Notification(title, options);
+            n.addEventListener('show', function(ev){
+                console.log('SHOW', ev.currentTarget.data);
+            });
+            n.addEventListener('close', function(ev){
+               console.log('CLOSE', ev.currentTarget.body); 
+            });
+            setTimeout( n.close.bind(n), 3000);
+        }
+        
+    </script>
+</body>
+</html
